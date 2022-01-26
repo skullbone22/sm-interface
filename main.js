@@ -44,9 +44,9 @@ function createWindow() {
 ipcMain.on("saveConfig", (_, data) => {
   var settingsPath = "";
   if (data[0] == "gameDirectories") {
-    settingsPath = "./userConfig/gameDirectories.json";
+    settingsPath = "./gameDirectories.json";
   } else {
-    settingsPath = "./userConfig/gameParameters.json";
+    settingsPath = "./gameParameters.json";
   }
   fs.writeFile(settingsPath, data[1], (err) => {
     if (err) {
@@ -59,13 +59,17 @@ ipcMain.on("saveConfig", (_, data) => {
 ipcMain.on("loadConfig", (event, arg) => {
   var settingsPath = "";
   if (arg == "gameDirectories") {
-    settingsPath = "./userConfig/gameDirectories.json";
+    settingsPath = "./gameDirectories.json";
   } else {
-    settingsPath = "./userConfig/gameParameters.json";
+    settingsPath = "./gameParameters.json";
   }
   fs.readFile(settingsPath, "utf8", function (err, data) {
     if (err) {
-      event.returnValue = "";
+      fs.writeFile(settingsPath, '{"data":"none"}', function (err) {
+        if (err) throw err;
+        console.log('File is created successfully.');
+      });
+      event.returnValue = '{"data":"none"}';
     } else {
       event.returnValue = data;
     }

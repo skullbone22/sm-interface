@@ -19,11 +19,11 @@ const Settings = () => {
   const [armaDirectory, setArmaDirectory] = useState("");
   const [armaMods, setArmaMods] = useState("");
 
-  const [optionalMods, setOptionalMods] = useState(true);
-  const [mainMenu, setMainMenu] = useState(true);
-  const [noPause, setNoPause] = useState(true);
-  const [hugePages, setHugePages] = useState(true);
-  const [noSplash, setNoSplash] = useState(true);
+  const [optionalMods, setOptionalMods] = useState(false);
+  const [mainMenu, setMainMenu] = useState(false);
+  const [noPause, setNoPause] = useState(false);
+  const [hugePages, setHugePages] = useState(false);
+  const [noSplash, setNoSplash] = useState(false);
   const [cpuCount, setCpuCount] = useState('');
   const [exThreads, setExThreads] = useState('');
   const [maxMemory, setMaxMemory] = useState();
@@ -31,20 +31,20 @@ const Settings = () => {
   useEffect(() => {
     var data = JSON.parse(electron.filesApi.getConfig("gameDirectories"));
     console.log(data);
-    setArmaDirectory(data["directory"]);
-    setArmaMods(data["modsDirectory"]);
+    if(data["directory"] !== undefined) setArmaDirectory(data["directory"]);
+    if(data["modsDirectory"] !== undefined) setArmaMods(data["modsDirectory"]);
 
 
     var data = JSON.parse(electron.filesApi.getConfig("gameParameters"));
     console.log(data);
-    setOptionalMods(data["optionalMods"]);
-    setMainMenu(data["menu"]);
-    setNoPause(data["noPause"]);
-    setHugePages(data["hugePages"]);
-    setNoSplash(data["noSplash"]);
-    setCpuCount(data["cpuCount"]);
-    setExThreads(data["exThreads"]);
-    setMaxMemory(data["maxMemory"]);
+    if(data["optionalMods"] !== undefined) setOptionalMods(data["optionalMods"]);
+    if(data["menu"] !== undefined) setMainMenu(data["menu"]);
+    if(data["noPause"] !== undefined) setNoPause(data["noPause"]);
+    if(data["hugePages"] !== undefined) setHugePages(data["hugePages"]);
+    if(data["noSplash"] !== undefined) setNoSplash(data["noSplash"]);
+    if(data["cpuCount"] !== undefined) setCpuCount(data["cpuCount"]);
+    if(data["exThreads"] !== undefined) setExThreads(data["exThreads"]);
+    if(data["maxMemory"] !== undefined) setMaxMemory(data["maxMemory"]);
   }, []);
 
 

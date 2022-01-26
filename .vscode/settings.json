@@ -6,12 +6,10 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        ".vscode": true,
-        "node_modules": true
+        ".vscode": true
     },
     "hide-files.files": [
-        ".vscode",
-        "node_modules"
+        ".vscode"
     ],
     "cSpell.words": [
         "Arma"
