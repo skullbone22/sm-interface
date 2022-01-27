@@ -2,7 +2,7 @@ node_modules
 out
 .vscode
 
-build/js
+build
 
 gameDirectories.json
 gameParameters.json
