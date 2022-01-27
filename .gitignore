@@ -1,2 +1,9 @@
 node_modules
 out
+.vscode
+
+build/js
+
+gameDirectories.json
+gameParameters.json
+settings.json
