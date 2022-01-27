@@ -28,11 +28,11 @@ function createWindow() {
       nodeIntegration: false,
       worldSafeExecuteJavaScript: true,
       contextIsolation: true,
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "./src/preload.js"),
     },
   });
 
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("./src/index.html");
 
   mainWindow.webContents.on("new-window", (event, url) => {
     event.preventDefault();
